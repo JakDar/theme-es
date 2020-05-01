@@ -6,6 +6,17 @@ set -g theme_display_git_ahead_verbose yes
 set -g theme_hide_hostname no
 set -g theme_display_user no
 
+function fish_greeting --description 'Initial message'
+
+end
+
+function fish_mode_prompt --description 'Displays the current mode'
+    # We have vim indicator on right ;)
+    # https://github.com/fish-shell/fish-shell/issues/3232
+end
+
+
+
 function fish_prompt
     set -g last_status $status #exit status of last command
     #set -l count (_file_count)
@@ -122,8 +133,9 @@ function fish_right_prompt
     end
     echo -n -s "$errorp$duration$jobsp" #show error code, command duration and jobs status
 
-    # if test "$fish_key_bindings" = "fish_hybrid_bindings"
-    prompt_vi_mode
+    if [ "$fish_key_bindings" = "fish_hybrid_key_bindings" ]
+        prompt_vi_mode
+    end
     set_color normal
     # end
 
@@ -430,8 +442,8 @@ function _icons_initialize
     set -g ICON_VCS_CLEAN \UF03A # 
     set -g ICON_VCS_PUSH printf "\UF005 " # bugs out in fish: \UF005 (printf "\UF005")
     set -g ICON_VCS_DIRTY ± #
-    set -g ICON_ARROW_UP \UF03D"" #  ↑
-    set -g ICON_ARROW_DOWN \UF03F"" #  ↓
+    set -g ICON_ARROW_UP " " #  ↑
+    set -g ICON_ARROW_DOWN "" #  ↓
     set -g ICON_OK \UF03A # 
     set -g ICON_FAIL \UF081 # 
     set -g ICON_STAR \UF02A # 
