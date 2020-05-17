@@ -11,7 +11,7 @@ function fish_greeting --description 'Initial message'
 end
 
 function fish_mode_prompt --description 'Displays the current mode'
-    # We have vim indicator on right ;)
+    # We have vim indicator on the right ;)
     # https://github.com/fish-shell/fish-shell/issues/3232
 end
 
@@ -136,6 +136,11 @@ function fish_right_prompt
     if [ "$fish_key_bindings" = "fish_hybrid_key_bindings" ]
         prompt_vi_mode
     end
+
+    if [ -n "$TMUX" ]
+        echo -e "\e[97m™\e[39m"
+    end
+
     set_color normal
     # end
 
