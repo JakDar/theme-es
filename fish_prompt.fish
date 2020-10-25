@@ -44,6 +44,11 @@ function fish_prompt
 
     echo -n -s $symbols$p_path2 #-n no newline, -s no space separation of arguments
     _is_git_folder; and _prompt_git
+
+    if test -n "$IN_NIX_SHELL"
+        echo -n "🐚 "
+    end
+
     echo -n -s $prompt
 end
 
