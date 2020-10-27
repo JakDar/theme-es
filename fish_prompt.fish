@@ -142,7 +142,9 @@ function fish_right_prompt
         prompt_vi_mode
     end
 
-    if [ -n "$TMUX" ]
+    if [ -n "$SPLIT_VPN" ]
+        echo -e "\e[97m \e[39m"
+    else if [ -n "$TMUX" ]
         echo -e "\e[97m™\e[39m"
     end
 
