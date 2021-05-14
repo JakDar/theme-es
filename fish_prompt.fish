@@ -138,8 +138,11 @@ function fish_right_prompt
     end
     echo -n -s "$errorp$duration$jobsp" #show error code, command duration and jobs status
 
-    if [ "$fish_key_bindings" = "fish_hybrid_key_bindings" ]
+    if [ "$fish_key_bindings" = fish_hybrid_key_bindings ] || [ "$fish_key_bindings" = fish_vi_key_bindings ]
         prompt_vi_mode
+    else
+        set -l mode (fish_cursor_name_to_code bar_steady)
+        echo -e "\e[\x3$mode q"
     end
 
     if [ -n "$SPLIT_VPN" ]
